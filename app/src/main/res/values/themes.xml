@@ -1,0 +1,17 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.PAMA" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Customize your light theme here. -->
+        <item name="colorPrimary">@color/storm</item>
+        <item name="colorPrimaryVariant">@color/storm</item>
+        <item name="android:statusBarColor">@color/storm</item>
+    </style>
+
+    <style name="Theme.PAMA" parent="Base.Theme.PAMA" />
+    
+    
+    <style name="App.Custom.Indicator" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
+        <item name="android:color">@color/storm3</item>
+    </style>
+    
+</resources>
