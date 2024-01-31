@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -19,14 +20,16 @@
             android:layout_height="wrap_content"
             android:text="Assets"
             android:textStyle="bold"
+
             android:textColor="@color/storm"
             android:textSize="28sp"/>
 
         <androidx.cardview.widget.CardView
             android:id="@+id/no_asset"
             android:layout_width="match_parent"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             android:layout_margin="10dp"
+            android:visibility="gone"
             android:layout_height="wrap_content">
 
             <LinearLayout
@@ -51,6 +54,10 @@
 
         </androidx.cardview.widget.CardView>
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+         android:layout_height="match_parent"
+         android:visibility="gone"/>
 
 
 
@@ -62,6 +69,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
+        android:tintMode="@integer/material_motion_duration_long_1"
         android:backgroundTint="@color/storm"
         android:contentDescription="@string/fab_transformation_sheet_behavior"
         android:src="@drawable/baseline_add_24" />

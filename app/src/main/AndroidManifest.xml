@@ -13,31 +13,31 @@
         android:theme="@style/Theme.PAMA"
         tools:targetApi="31">
         <activity
-            android:name=".Register"
+            android:name=".LoginActivity"
             android:exported="false" />
         <activity
-            android:name=".Login2"
+            android:name=".Register"
             android:exported="false" />
         <activity
             android:name=".parent_fragment"
             android:exported="false" />
+
+
         <activity
-            android:name=".register"
-            android:exported="false"
-            android:label="@string/title_activity_register"
-            android:theme="@style/Theme.PAMA" />
-        <activity
-            android:name=".ui.login.LoginActivity"
-            android:exported="false"
-            android:label="@string/title_activity_login" />
-        <activity
-            android:name=".MainActivity"
-            android:exported="true">
+            android:name=".LoginActivity"
+            android:exported="true"
+            tools:ignore="DuplicateActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".MainActivity"
+            android:exported="false">
+
         </activity>
     </application>
 
