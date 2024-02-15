@@ -73,4 +73,8 @@
     <string name="attachment_summary_on">Automatically download attachments for incoming emails
     </string>
     <string name="attachment_summary_off">Only download attachments when manually requested</string>
+    <string name="username">Username</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="pama_logo">Pama Logo</string>
+    <item name="btnLogin" type="id" />
 </resources>

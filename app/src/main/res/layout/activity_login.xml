@@ -12,11 +12,11 @@
         android:layout_width="126dp"
         android:layout_height="0dp"
         android:layout_marginTop="111dp"
-        android:layout_marginBottom="38dp"
+        android:layout_marginBottom="35dp"
         android:src="@drawable/pama"
         app:layout_constraintBottom_toTopOf="@+id/textView"
-        app:layout_constraintEnd_toEndOf="@+id/textView"
-        app:layout_constraintStart_toStartOf="@+id/textView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
 
@@ -26,7 +26,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="13dp"
         android:layout_marginEnd="13dp"
-        android:layout_marginBottom="72dp"
+        android:layout_marginBottom="74dp"
         android:text="Log In"
         android:textColor="@color/storm"
         android:textSize="30sp"
@@ -44,10 +44,10 @@
         android:layout_marginEnd="13dp"
         android:layout_marginBottom="25dp"
         android:background="@drawable/edit_background"
-        android:hint="@string/prompt_email"
-        android:padding="10dp"
+        android:hint="Username"
         android:inputType="textEmailAddress"
-        android:paddingLeft="10dp"
+        android:padding="10dp"
+        android:paddingStart="10dp"
         android:selectAllOnFocus="true"
         android:textColor="@color/storm2"
         android:textColorHint="@color/storm2"
@@ -55,7 +55,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView"
-        tools:ignore="TouchTargetSizeCheck" />
+        tools:ignore="RtlSymmetry,TouchTargetSizeCheck" />
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/password"
@@ -63,38 +63,38 @@
         android:layout_height="0dp"
         android:layout_marginStart="13dp"
         android:layout_marginEnd="13dp"
-        android:layout_marginBottom="78dp"
+        android:layout_marginBottom="80dp"
         android:autofillHints=""
         android:background="@drawable/edit_background"
         android:hint="@string/prompt_password"
         android:imeActionLabel="@string/action_sign_in_short"
         android:imeOptions="actionDone"
         android:inputType="textPassword"
-        android:paddingStart="10dp"
         android:padding="10dp"
+        android:paddingStart="10dp"
         android:selectAllOnFocus="true"
         android:textColor="@color/storm2"
         android:textColorHint="@color/storm2"
-        app:layout_constraintBottom_toTopOf="@+id/login"
+        app:layout_constraintBottom_toTopOf="@+id/loginbtn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/username"
-        tools:ignore="TouchTargetSizeCheck" />
+        tools:ignore="RtlSymmetry,TouchTargetSizeCheck" />
 
     <Button
-        android:id="@+id/login"
+        android:id="@+id/loginbtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="start"
-        android:layout_marginBottom="108dp"
+        android:layout_marginBottom="109dp"
         android:backgroundTint="#132E35"
-        android:enabled="false"
         android:text="Log In"
         android:textColor="@color/white"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout"
-        app:layout_constraintEnd_toEndOf="@+id/password"
-        app:layout_constraintStart_toStartOf="@+id/password"
-        app:layout_constraintTop_toBottomOf="@+id/password" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/password"
+        tools:ignore="DuplicateSpeakableTextCheck" />
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -102,14 +102,14 @@
         android:layout_height="0dp"
         android:layout_marginStart="13dp"
         android:layout_marginEnd="13dp"
-        android:layout_marginBottom="114dp"
+        android:layout_marginBottom="115dp"
         android:gravity="center"
         android:orientation="horizontal"
         android:padding="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/login">
+        app:layout_constraintTop_toBottomOf="@+id/loginbtn">
 
 
         <TextView
@@ -125,7 +125,7 @@
             android:id="@+id/registerbtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
+            android:layout_marginStart="5dp"
             android:text="Register"
             android:textColor="@color/storm"
             android:textStyle="bold"

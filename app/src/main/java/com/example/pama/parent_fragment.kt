@@ -3,7 +3,6 @@ package com.example.pama
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
-import com.example.pama.Accounts
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 private lateinit var bottomNavigationView: BottomNavigationView

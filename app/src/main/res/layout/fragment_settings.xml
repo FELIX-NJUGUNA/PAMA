@@ -47,16 +47,19 @@
             android:backgroundTint="@color/cream"
             android:textColor="@color/storm"
             android:layout_margin="10dp" />
+
         <Button
+            android:id="@+id/logout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:backgroundTint="@color/cream"
+            android:drawableLeft="@drawable/baseline_logout_24"
             android:text="Log Out"
             android:textAlignment="textStart"
-            android:drawableLeft="@drawable/baseline_logout_24"
-            android:backgroundTint="@color/cream"
             android:textColor="@color/storm"
-            android:layout_margin="10dp"
             tools:ignore="VisualLintButtonSize" />
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
