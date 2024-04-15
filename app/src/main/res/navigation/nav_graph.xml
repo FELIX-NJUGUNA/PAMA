@@ -46,5 +46,17 @@
         <action
             android:id="@+id/action_businesses_to_parent_fragment"
             app:destination="@id/parent_fragment" />
+        <action
+            android:id="@+id/action_businesses_to_buinessView"
+            app:destination="@id/buinessView" />
+    </fragment>
+    <fragment
+        android:id="@+id/buinessView"
+        android:name="com.example.pama.BuinessView"
+        android:label="fragment_buiness_view"
+        tools:layout="@layout/fragment_buiness_view" >
+        <action
+            android:id="@+id/action_buinessView_to_businesses"
+            app:destination="@id/businesses" />
     </fragment>
 </navigation>

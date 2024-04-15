@@ -44,11 +44,13 @@
                 tools:ignore="HardcodedText" />
 
             <TextView
+                android:id="@+id/balance_text_view_cash"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Ksh.0"
+                android:text="0.00"
                 android:textAlignment="center"
                 android:textSize="30sp"/>
+
 
 
                 <LinearLayout
@@ -70,18 +72,21 @@
                         android:orientation="horizontal">
 
                         <TextView
+                            android:id="@+id/income_text_view_cash"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Ksh.0"
+                            android:text="0.00"
                             android:textColor="@color/cream"
                             android:layout_weight="1"/>
+
                         <TextView
+                            android:id="@+id/expense_text_view_cash"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:gravity="right"
                             android:textColor="@color/cream"
-                            android:text="Ksh.0"/>
+                            android:text="0.00"/>
                     </LinearLayout>
 
                     <LinearLayout
@@ -134,10 +139,12 @@
                     android:text="Balance"
                     android:textAlignment="center" />
 
+
                 <TextView
+                    android:id="@+id/balance_text_view_bank"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Ksh.0"
+                    android:text="0.00"
                     android:textAlignment="center"
                     android:textSize="30sp"/>
 
@@ -161,18 +168,20 @@
                         android:orientation="horizontal">
 
                         <TextView
+                            android:id="@+id/income_text_view_bank"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Ksh.0"
+                            android:text="0.00"
                             android:textColor="@color/cream"
                             android:layout_weight="1"/>
                         <TextView
+                            android:id="@+id/expense_text_view_bank"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:gravity="right"
                             android:textColor="@color/cream"
-                            android:text="Ksh.0"/>
+                            android:text="0.00"/>
                     </LinearLayout>
 
                     <LinearLayout
@@ -224,9 +233,10 @@
                     android:textAlignment="center" />
 
                 <TextView
+                    android:id="@+id/balance_text_view_card"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Ksh.0"
+                    android:text="0.00"
                     android:textAlignment="center"
                     android:textSize="30sp"/>
 
@@ -250,18 +260,20 @@
                         android:orientation="horizontal">
 
                         <TextView
+                            android:id="@+id/income_text_view_card"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Ksh.0"
+                            android:text="0.00"
                             android:textColor="@color/cream"
                             android:layout_weight="1"/>
                         <TextView
+                            android:id="@+id/expense_text_view_card"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:gravity="right"
                             android:textColor="@color/cream"
-                            android:text="Ksh.0"/>
+                            android:text="0.00"/>
                     </LinearLayout>
 
                     <LinearLayout

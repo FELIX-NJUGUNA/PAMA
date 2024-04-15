@@ -76,5 +76,18 @@
     <string name="username">Username</string>
     <string name="confirm_password">Confirm Password</string>
     <string name="pama_logo">Pama Logo</string>
+    <string name="select_category">Select Category</string>
+    <string name="category">Category</string>
+    <string name="cancel">Cancel</string>
+    <string name="save">Save</string>
+    <string name="date">Date</string>
     <item name="btnLogin" type="id" />
+    <string-array name="business_categories">
+        <item>Transport</item>
+        <item>Food</item>
+        <item>Electronics</item>
+        <item>Clothing</item>
+        <item>Housing</item>
+        <item>School</item>
+    </string-array>
 </resources>

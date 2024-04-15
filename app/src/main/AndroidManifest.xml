@@ -12,20 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PAMA"
         tools:targetApi="31">
-       
-        <activity
-            android:name=".Register"
-            android:exported="false" />
-        <activity
-            android:name=".parent_fragment"
-            android:exported="false" />
-        <activity
-            android:name=".MainActivity"
 
-            />
-
-
-        <!--This loads the Main activity when the application starts-->
         <activity
             android:name=".LoginActivity"
             android:exported="true"
@@ -36,8 +23,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-
+        <activity
+            android:name=".Register"
+            android:exported="false" />
+        <activity
+            android:name=".parent_fragment"
+            android:exported="false" />
+        <activity android:name=".MainActivity" />
     </application>
 
 </manifest>

@@ -6,7 +6,9 @@
     <color name="storm2">#2D4A53</color>
     <color name="storm3">#69818D</color>
     <color name="graybg">#5A636A</color>
-    <color name="cream">#FCFDEF</color>
+    <color name="cream">#FAFCEE</color>
     <color name="green">#76FF03</color>
     <color name="red">#FF1744</color>
+    <color name="income_color">#8BC34A</color>
+    <color name="expense_color">#B33534</color>
 </resources>

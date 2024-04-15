@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/add_new_asset"
+    android:orientation="vertical"
+    android:layout_margin="5dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="5dp">
+
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:text="Add Transaction"
+        android:textColor="@color/storm"
+        android:textSize="27sp"
+        tools:layout_editor_absoluteX="143dp"
+        tools:layout_editor_absoluteY="41dp" />
+
+
+
+    <EditText
+        android:id="@+id/transaction_title"
+        style="@style/Widget.Material3.TextInputLayout.FilledBox.ExposedDropdownMenu"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/edit_background"
+        android:drawableStart="@drawable/baseline_add_business_24"
+        android:ems="10"
+        android:hint="Title"
+        android:inputType="text"
+        android:padding="10dp"
+        tools:layout_editor_absoluteX="5dp"
+        tools:layout_editor_absoluteY="133dp" />
+
+
+
+    <EditText
+        android:id="@+id/date"
+        style="@style/Widget.Material3.TextInputLayout.FilledBox.ExposedDropdownMenu"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/edit_background"
+        android:drawableStart="@drawable/baseline_calendar_month_24"
+        android:ems="10"
+        android:calendarViewShown="false"
+        android:hint="@string/date"
+        android:layout_marginTop="20dp"
+        android:inputType="date"
+        android:padding="10dp"
+        tools:layout_editor_absoluteX="5dp"
+        tools:layout_editor_absoluteY="223dp" />
+
+    <DatePicker
+        android:id="@+id/datePicker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:datePickerMode="spinner"
+        android:visibility="gone" />
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Wallet"
+        android:layout_marginTop="20dp"
+        android:textSize="23sp"
+        android:textColor="@color/storm"/>
+    <RadioGroup
+        android:id="@+id/wallet"
+        style="@style/Widget.Material3.TextInputLayout.FilledBox.ExposedDropdownMenu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/edit_background"
+        android:ems="10"
+
+        android:orientation="horizontal"
+        android:padding="10dp"
+        tools:layout_editor_absoluteX="5dp"
+        tools:layout_editor_absoluteY="313dp">
+
+        <RadioButton
+            android:id="@+id/wal_cash"
+            android:layout_width="123dp"
+            android:layout_height="wrap_content"
+            android:text="Cash" />
+
+        <RadioButton
+            android:id="@+id/wal_bank"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:text="Bank" />
+
+        <RadioButton
+            android:id="@+id/wal_card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Card" />
+    </RadioGroup>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Amount"
+        android:layout_marginTop="20dp"
+        android:textSize="23sp"
+        android:textColor="@color/storm"/>
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ksh."
+        android:layout_marginRight="15sp"
+        android:textSize="23sp"
+        android:layout_marginTop="20dp"
+        android:textColor="@color/storm"/>
+    <EditText
+        android:id="@+id/trans_amount"
+        style="@style/Widget.Material3.TextInputLayout.FilledBox.ExposedDropdownMenu"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/edit_background"
+        android:drawableStart="@drawable/baseline_attach_money_24"
+        android:ems="10"
+        android:hint="0.00"
+        android:textSize="20sp"
+        android:inputType="numberDecimal"
+        android:padding="10dp"
+        tools:layout_editor_absoluteX="5dp"
+        tools:layout_editor_absoluteY="313dp" />
+</LinearLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Transaction Type"
+        android:layout_marginTop="20dp"
+        android:textSize="23sp"
+        android:textColor="@color/storm"/>
+    <RadioGroup
+        android:id="@+id/transaction_type"
+        style="@style/Widget.Material3.TextInputLayout.FilledBox.ExposedDropdownMenu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/edit_background"
+        android:ems="10"
+        android:orientation="horizontal"
+        android:padding="10dp"
+        tools:layout_editor_absoluteX="5dp"
+        tools:layout_editor_absoluteY="313dp">
+
+        <RadioButton
+            android:id="@+id/type_income"
+            android:layout_width="190dp"
+            android:layout_height="wrap_content"
+            android:text="Income" />
+
+        <RadioButton
+            android:id="@+id/type_expense"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Expense" />
+
+
+    </RadioGroup>
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="333dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:padding="2dp"
+        tools:layout_editor_absoluteX="39dp"
+        tools:layout_editor_absoluteY="407dp">
+
+
+        <Button
+            android:id="@+id/cancel_button"
+            android:layout_width="331dp"
+            android:layout_height="68dp"
+            android:layout_marginRight="5dp"
+            android:layout_weight="1"
+            android:backgroundTint="@color/storm"
+            android:text="@string/cancel"
+            tools:layout_editor_absoluteX="-70dp"
+            tools:layout_editor_absoluteY="462dp" />
+
+        <Button
+            android:id="@+id/trans_add"
+            android:layout_width="331dp"
+            android:layout_height="68dp"
+            android:layout_marginLeft="5dp"
+            android:layout_weight="1"
+            android:backgroundTint="@color/storm"
+            android:text="Add"
+            tools:layout_editor_absoluteX="93dp"
+            tools:layout_editor_absoluteY="508dp" />
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,64 +1,58 @@
 package com.example.pama
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
+import androidx.fragment.app.Fragment
+import com.example.pama.R.layout
+import com.example.pama.pamaDB.DatabaseHandler
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [Home.newInstance] factory method to
- * create an instance of this fragment.
- */
 class Home : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
-    private var btnAsset = R.id.my_assets
-    private var btnAccount = R.id.my_accounts
 
 
+    private lateinit var databaseHandler: DatabaseHandler
 
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home, container, false)
+        val view = inflater.inflate(layout.fragment_home, container, false)
+
+        databaseHandler = DatabaseHandler(requireContext())
+
+        // Get the balances for each wallet type
+        val cashBalance = databaseHandler.getBalanceByWalletType("cash")
+        val cardBalance = databaseHandler.getBalanceByWalletType("card")
+        val bankBalance = databaseHandler.getBalanceByWalletType("bank")
+
+        // Calculate the net worth
+        val netWorth = cashBalance + cardBalance + bankBalance
+
+        // Get the total income and expense for each wallet type
+        val cashIncome = databaseHandler.getTotalIncomeByAccount("cash")
+        val cardIncome = databaseHandler.getTotalIncomeByAccount("card")
+        val bankIncome = databaseHandler.getTotalIncomeByAccount("bank")
+        val totalIncome = cashIncome + cardIncome + bankIncome
+
+        val cashExpense = databaseHandler.getTotalExpenseByAccount("cash")
+        val cardExpense = databaseHandler.getTotalExpenseByAccount("card")
+        val bankExpense = databaseHandler.getTotalExpenseByAccount("bank")
+        val totalExpense = cashExpense + cardExpense + bankExpense
+
+        // Display the net worth, total income, and total expense in the UI
+        view.findViewById<TextView>(R.id.networth_value).text = "Ksh. ${"%.2f".format(netWorth)}"
+        view.findViewById<TextView>(R.id.total_income_value).text = "Ksh. ${"%.2f".format(totalIncome)}"
+        view.findViewById<TextView>(R.id.total_expense_value).text = "Ksh. ${"%.2f".format(totalExpense)}"
+
+        return view
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment Home.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            Home().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
-    }
+
+
+
+
 }

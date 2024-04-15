@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/cream"
+    tools:context=".BuinessView">
+
+    <!-- TODO: Update blank fragment layout -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <!--title page-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="10sp"
+            android:background="@color/storm">
+
+
+            <TextView
+                android:id="@+id/back_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="35sp"
+                android:textAlignment="textEnd"
+                android:textColor="@color/cream"
+                android:drawableLeft="@drawable/back_arrow"
+                android:text="Business name" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="30sp"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/cream"
+                android:textAlignment="textEnd"
+                android:text="Location"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="26sp"
+                android:textColor="@color/cream"
+                android:layout_marginTop="10dp"
+                android:textAlignment="textEnd"
+                android:text="Category"/>
+            <Button
+                android:id="@+id/addTransaction"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Add Transaction"
+                android:layout_marginTop="20dp"
+                android:backgroundTint="@color/cream"
+                android:textColor="@color/storm"
+                android:drawableStart="@drawable/add_income" />
+
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="5dp"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Transactions"
+                android:textAlignment="center"
+                android:textSize="28sp"
+                android:layout_marginBottom="10dp"
+                android:textColor="@color/storm"
+                />
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:ignore="UselessParent">
+
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/transactions"
+                    android:layout_width="match_parent"
+                     android:layout_height="wrap_content"
+                    />
+
+
+
+            </ScrollView>
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</FrameLayout>

@@ -69,6 +69,7 @@
         android:hint="@string/prompt_password"
         android:imeActionLabel="@string/action_sign_in_short"
         android:imeOptions="actionDone"
+        app:endIconMode="password_toggle"
         android:inputType="textPassword"
         android:padding="10dp"
         android:paddingStart="10dp"

@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AddNewAsset">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="130dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="82dp"
+            android:layout_marginBottom="37dp"
+            android:text="Add Asset"
+            android:textColor="@color/storm"
+            android:textSize="25sp"
+            app:layout_constraintBottom_toTopOf="@+id/assetname"
+            app:layout_constraintStart_toStartOf="@+id/assetname"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/assetname"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="56dp"
+            android:layout_marginEnd="56dp"
+            android:layout_marginBottom="35dp"
+            android:background="@drawable/edit_background"
+            android:ems="10"
+            android:hint="Asset Name"
+            android:inputType="text"
+            android:padding="10dp"
+            app:layout_constraintBottom_toTopOf="@+id/amount"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
+        <EditText
+            android:id="@+id/amount"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="56dp"
+            android:layout_marginEnd="56dp"
+            android:layout_marginBottom="36dp"
+            android:background="@drawable/edit_background"
+            android:ems="10"
+            android:hint="Location"
+            android:inputType="numberDecimal"
+            android:padding="10dp"
+            app:layout_constraintBottom_toTopOf="@+id/textInputLayout2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/assetname" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputLayout2"
+            style="@style/Widget.Material3.TextInputLayout.FilledBox.ExposedDropdownMenu"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+
+            android:layout_marginStart="56dp"
+            android:layout_marginEnd="56dp"
+            android:layout_marginBottom="54dp"
+            app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/amount">
+
+
+            <AutoCompleteTextView
+                android:id="@+id/auto_complete_text"
+                android:layout_width="match_parent"
+                android:paddingTop="16dp"
+                android:paddingBottom="16dp"
+                android:layout_height="51dp"
+                android:background="@drawable/edit_background"
+                android:inputType="none"
+                android:text="@string/select_category" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout2"
+            android:layout_width="0dp"
+            android:layout_height="70dp"
+            android:layout_marginStart="37dp"
+            android:layout_marginEnd="37dp"
+            android:layout_marginBottom="323dp"
+            android:orientation="horizontal"
+            android:padding="2dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textInputLayout2">
+
+
+            <Button
+                android:id="@+id/cancel_button"
+                android:layout_width="331dp"
+                android:layout_height="68dp"
+                android:layout_weight="1"
+                android:backgroundTint="@color/storm"
+                android:text="@string/cancel"
+                tools:layout_editor_absoluteX="-1dp"
+                tools:layout_editor_absoluteY="541dp" />
+
+            <Button
+                android:id="@+id/save_asset"
+                android:layout_width="331dp"
+                android:layout_height="68dp"
+                android:layout_weight="1"
+                android:backgroundTint="@color/storm"
+                android:text="@string/save"
+                tools:layout_editor_absoluteX="173dp"
+                tools:layout_editor_absoluteY="557dp" />
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</FrameLayout>

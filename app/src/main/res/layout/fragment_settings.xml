@@ -18,35 +18,26 @@
             android:layout_height="wrap_content"
             android:text="Settings"
             android:textSize="25sp"
+            android:layout_marginBottom="20dp"
             android:textColor="@color/storm"/>
 
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:src="@drawable/baseline_account_circle_24"/>
+
+
         <Button
+            android:id="@+id/username"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="My Profile"
-            android:textAlignment="textStart"
-            android:drawableLeft="@drawable/baseline_manage_accounts_24"
+
             android:backgroundTint="@color/cream"
             android:textColor="@color/storm"
             android:layout_margin="10dp" />
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Currency Type"
-            android:textAlignment="textStart"
-            android:drawableLeft="@drawable/baseline_currency_exchange_24"
-            android:backgroundTint="@color/cream"
-            android:textColor="@color/storm"
-            android:layout_margin="10dp" />
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Expense Limit"
-            android:textAlignment="textStart"
-            android:drawableLeft="@drawable/baseline_limit_24"
-            android:backgroundTint="@color/cream"
-            android:textColor="@color/storm"
-            android:layout_margin="10dp" />
+
 
         <Button
             android:id="@+id/logout"

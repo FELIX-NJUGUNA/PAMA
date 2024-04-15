@@ -10,12 +10,11 @@ class Users {
     var password: String
 
 
-    constructor(username: String, password: String) {
-        this.username = username
+    constructor(username: String, password: String, string: Any?) {
+        this.username = username.toString()
         this.password = password
 
     }
-
 
 
 }
