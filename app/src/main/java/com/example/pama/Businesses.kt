@@ -42,7 +42,7 @@ class Businesses : Fragment() {
 
         recyclerView = view.findViewById(R.id.business_list )
         newArry = ArrayList()
-        //add onEditClick Function next to onDeleteClick
+        //add onEditClick Function next to onDeleteClick(later)
         adapter = MyAdapter(newArry)
 
          db = DatabaseHandler(requireContext())
@@ -64,17 +64,24 @@ class Businesses : Fragment() {
 
     }
 
+
     @SuppressLint("NotifyDataSetChanged")
     private fun displaybusiness() {
         val newcursor: Cursor? = db.getBusiness()
         newArry.clear()
-        while (newcursor!!.moveToNext()){
-            val buname = newcursor.getString(0)
-            val catname = newcursor.getString(1)
-            val locname = newcursor.getString(2)
-            newArry.add(Datalist(buname,catname,locname))
+
+        if (newcursor != null) {
+
+                while (newcursor.moveToNext()) {
+                    val buname = newcursor.getString(1)
+                    val catname = newcursor.getString(2)
+                    val locname = newcursor.getString(3)
+
+                    newArry.add(Datalist(buname, catname, locname))
+                }
+
         }
-        newcursor.close()
+        newcursor?.close()
         recyclerView.adapter?.notifyDataSetChanged()
     }
 

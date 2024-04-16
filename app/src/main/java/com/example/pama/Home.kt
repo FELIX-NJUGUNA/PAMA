@@ -1,20 +1,30 @@
 package com.example.pama
 
+import TransactionAdapter
+import android.annotation.SuppressLint
+import android.database.Cursor
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.pama.R.layout
 import com.example.pama.pamaDB.DatabaseHandler
+import com.example.pama.recyclerview.TransactionDataList
 
 class Home : Fragment() {
 
+    private lateinit var db:DatabaseHandler
+    private lateinit var newArr: ArrayList<TransactionDataList>
+    private lateinit var recyclerView: RecyclerView
+    private lateinit var adapter: TransactionAdapter
 
-    private lateinit var databaseHandler: DatabaseHandler
 
 
+    @SuppressLint("SetTextI18n")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
@@ -22,36 +32,58 @@ class Home : Fragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(layout.fragment_home, container, false)
 
-        databaseHandler = DatabaseHandler(requireContext())
 
-        // Get the balances for each wallet type
-        val cashBalance = databaseHandler.getBalanceByWalletType("cash")
-        val cardBalance = databaseHandler.getBalanceByWalletType("card")
-        val bankBalance = databaseHandler.getBalanceByWalletType("bank")
+
+
+        //recycler view handling
+        recyclerView = view.findViewById(R.id.transactions)
+
+        newArr = ArrayList()
+        adapter = TransactionAdapter(newArr)
+
+        db = DatabaseHandler(requireContext())
+
+        recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        recyclerView.adapter = TransactionAdapter(newArr)
+
+        displayTransaction()
+
+        // Get the balances for all wallet types
+        val balances = db.getBalancesByWalletType()
 
         // Calculate the net worth
-        val netWorth = cashBalance + cardBalance + bankBalance
+        var netWorth = 0.0
+        for (balance in balances.values) {
+            netWorth += balance
+        }
 
-        // Get the total income and expense for each wallet type
-        val cashIncome = databaseHandler.getTotalIncomeByAccount("cash")
-        val cardIncome = databaseHandler.getTotalIncomeByAccount("card")
-        val bankIncome = databaseHandler.getTotalIncomeByAccount("bank")
-        val totalIncome = cashIncome + cardIncome + bankIncome
-
-        val cashExpense = databaseHandler.getTotalExpenseByAccount("cash")
-        val cardExpense = databaseHandler.getTotalExpenseByAccount("card")
-        val bankExpense = databaseHandler.getTotalExpenseByAccount("bank")
-        val totalExpense = cashExpense + cardExpense + bankExpense
+        // Get the total income and expense for all wallet types
+        val totalIncome = db.getTotalIncomeByAllAccounts()
+        val totalExpense = db.getTotalExpenseByAllAccounts()
 
         // Display the net worth, total income, and total expense in the UI
         view.findViewById<TextView>(R.id.networth_value).text = "Ksh. ${"%.2f".format(netWorth)}"
         view.findViewById<TextView>(R.id.total_income_value).text = "Ksh. ${"%.2f".format(totalIncome)}"
         view.findViewById<TextView>(R.id.total_expense_value).text = "Ksh. ${"%.2f".format(totalExpense)}"
 
+
         return view
     }
 
-
+    @SuppressLint("NotifyDataSetChanged")
+    private fun displayTransaction() {
+        val newcursor: Cursor? = db.getTransactions()
+        newArr.clear()
+        while (newcursor!!.moveToNext()){
+            val spenton = newcursor.getString(1)
+            val date = newcursor.getString(2)
+            val amount = newcursor.getDouble(if(newcursor.getString(2) == "income") 5 else 6)
+            val type = newcursor.getString(4)
+            newArr.add(TransactionDataList(spenton,date,type,amount))
+        }
+        newcursor.close()
+        recyclerView.adapter?.notifyDataSetChanged()
+    }
 
 
 

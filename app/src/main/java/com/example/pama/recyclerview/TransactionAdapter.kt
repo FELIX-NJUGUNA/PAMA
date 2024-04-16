@@ -2,35 +2,19 @@
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.EditText
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pama.R
 import com.example.pama.recyclerview.TransactionDataList
 
-class TransactionAdapter(private val transactionlist: ArrayList<TransactionDataList>):
+class TransactionAdapter(private var transactionlist: List<TransactionDataList>):
     RecyclerView.Adapter<TransactionAdapter.MyViewHolder>() {
 
-    inner class MyViewHolder(private val itemView: View): RecyclerView.ViewHolder(itemView) {
-        val title: EditText = itemView.findViewById(R.id.spent_on)
-        val date: EditText = itemView.findViewById(R.id.date)
-        val amount: EditText = itemView.findViewById(R.id.trans_amount)
+    inner class MyViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
+        val title: TextView = itemView.findViewById(R.id.spent_on)
+        val date: TextView = itemView.findViewById(R.id.date)
+        val amount: TextView = itemView.findViewById(R.id.trans_amount)
 
-
-
-
-        fun bind(transaction: TransactionDataList) {
-
-
-            title.setText(transaction.title)
-            date.setText(transaction.date)
-            amount.setText(transaction.amount.toString())
-
-            if (transaction.type == "income") {
-                amount.setBackgroundResource(R.color.income_color)
-            } else {
-                amount.setBackgroundResource(R.color.expense_color)
-            }
-        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
@@ -44,8 +28,27 @@ class TransactionAdapter(private val transactionlist: ArrayList<TransactionDataL
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val currentTrans = transactionlist[position]
-        holder.bind(currentTrans)
+        holder.title.text = currentTrans.title
+        holder.date.text = currentTrans.date
+        holder.amount.text = currentTrans.amount.toString()
+
+
+
+
+        //display different colors for the income and expense
+        val context = holder.itemView.context
+        val colorRes = when(currentTrans.type){
+            "income" -> R.color.income_color
+            else -> R.color.expense_color
+        }
+        val color = context.getColor(colorRes)
+        holder.amount.setBackgroundColor(color)
 
     }
+
+//    fun updateData(newTransactions: List<TransactionDataList>) {
+//        transactionlist = newTransactions
+//        notifyDataSetChanged()
+//    }
 
 }

@@ -1,5 +1,6 @@
 package com.example.pama
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -61,6 +62,7 @@ class Accounts : Fragment() {
     }
 
 
+    @SuppressLint("SetTextI18n")
     private fun fetchAccountData(accountType: String) {
         val totalIncome = databaseHandler.getTotalIncomeByAccount(accountType)
         val totalExpense = databaseHandler.getTotalExpenseByAccount(accountType)
@@ -69,19 +71,19 @@ class Accounts : Fragment() {
         // Update text views with fetched data (assuming appropriate formatting)
         when (accountType) {
             "Cash" -> {
-                cashIncomeTextView.text = String.format("%.2f", totalIncome)
-                cashExpenseTextView.text = String.format("%.2f", totalExpense)
-                cashBalanceTextView.text = String.format("%.2f", balance)
+                cashIncomeTextView.text = "Ksh " + String.format("%.2f", totalIncome)
+                cashExpenseTextView.text = "Ksh " + String.format("%.2f", totalExpense)
+                cashBalanceTextView.text = "Ksh " + String.format("%.2f", balance)
             }
             "Bank" -> {
-                bankIncomeTextView.text = String.format("%.2f", totalIncome)
-                bankExpenseTextView.text = String.format("%.2f", totalExpense)
-                bankBalanceTextView.text = String.format("%.2f", balance)
+                bankIncomeTextView.text = "Ksh " + String.format("%.2f", totalIncome)
+                bankExpenseTextView.text = "Ksh " + String.format("%.2f", totalExpense)
+                bankBalanceTextView.text = "Ksh " + String.format("%.2f", balance)
             }
             "Card" -> {
-                cardIncomeTextView.text = String.format("%.2f", totalIncome)
-                cardExpenseTextView.text = String.format("%.2f", totalExpense)
-                cardBalanceTextView.text = String.format("%.2f", balance)
+                cardIncomeTextView.text = "Ksh " + String.format("%.2f", totalIncome)
+                cardExpenseTextView.text = "Ksh " + String.format("%.2f", totalExpense)
+                cardBalanceTextView.text = "Ksh " + String.format("%.2f", balance)
             }
         }
     }

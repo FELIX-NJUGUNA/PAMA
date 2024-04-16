@@ -8,7 +8,7 @@ import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import android.util.Log
-    import org.mindrot.jbcrypt.BCrypt
+import org.mindrot.jbcrypt.BCrypt
 
 
     private const val dbname = "UserDb"
@@ -17,6 +17,8 @@ import android.util.Log
     private const val col_businessname = "Business_name"
     private const val col_category = "Category"
     private const val col_location = "Location"
+    private const val col_transList = "Transactions Data List"
+
     private const val accounttbname = "Account"
     private const val col_wallet = "Wallet"
     private const val col_income = "Income"
@@ -82,6 +84,7 @@ import android.util.Log
             cvBusiness.put(col_businessname, businessname)
             cvBusiness.put(col_category, category)
             cvBusiness.put(col_location, location)
+
 
             val result = db.insert(businesstbname, null, cvBusiness)
             return result != (-1).toLong()
@@ -263,6 +266,12 @@ import android.util.Log
 
         }
 
+        //read Transaction table
+        fun getTransactions():Cursor? {
+            val db = this.writableDatabase
+            return db.rawQuery("SELECT * FROM $transtbname", null)
+        }
+
         @SuppressLint("Range")
         fun getPasswordHash(username: String): String? {
             val db = readableDatabase
@@ -288,6 +297,62 @@ import android.util.Log
 
 
         //Read incomes and expenses from the database using transactions table
+        fun getBalancesByWalletType(): Map<String,Double> {
+            val balances = mutableMapOf<String,Double>()
+            val query = "SELECT $col_wal as wallet_type, SUM($col_inc - $col_exp) as balance FROM $transtbname GROUP BY $col_wal"
+            val cursor = readableDatabase.rawQuery(query, null)
+            while (cursor.moveToNext()) {
+                val walletType = cursor.getString(0)
+                val balance = cursor.getDouble(1)
+                balances[walletType] = balance
+            }
+            cursor.close()
+            return balances
+            //creates a mutable map with the wallet type as key and balance as value
+        }
+
+        fun getTotalIncomeByAllAccounts(): Double {
+            val query = "SELECT SUM($col_inc) as total_income FROM $transtbname"
+            val cursor = readableDatabase.rawQuery(query, null)
+            var totalIncome = 0.0
+            if (cursor.moveToFirst()) {
+                totalIncome = cursor.getDouble(0)
+            }
+            cursor.close()
+            return totalIncome
+        }
+
+        fun getTotalExpenseByAllAccounts(): Double {
+            val query = "SELECT SUM($col_exp) as total_expense FROM $transtbname"
+            val cursor = readableDatabase.rawQuery(query, null)
+            var totalExpense = 0.0
+            if (cursor.moveToFirst()) {
+                totalExpense = cursor.getDouble(0)
+            }
+            cursor.close()
+            return totalExpense
+        }
+
+
+        //get the username for the user profile in the settings
+        @SuppressLint("Range")
+        fun getUsername(context: Context): String? {
+            val db = this.readableDatabase
+
+            val query = "SELECT $col_username FROM $tbname"
+            val cursor = db.rawQuery(query, null)
+
+            if (cursor.moveToFirst()) {
+                return cursor.getString(cursor.getColumnIndex(col_username))
+            } else {
+                return null
+            }
+        }
+
+
+
+
+        //for the accounts section
         fun getTotalIncomeByAccount(accountWallet: String): Double {
             val db = readableDatabase
             val query = "SELECT SUM($col_inc) FROM $transtbname WHERE $col_wal = ?"

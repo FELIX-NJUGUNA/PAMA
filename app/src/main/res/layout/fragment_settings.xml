@@ -29,11 +29,11 @@
 
 
         <Button
-            android:id="@+id/username"
+            android:id="@+id/settings_username"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="My Profile"
-
+            android:textSize="30sp"
             android:backgroundTint="@color/cream"
             android:textColor="@color/storm"
             android:layout_margin="10dp" />

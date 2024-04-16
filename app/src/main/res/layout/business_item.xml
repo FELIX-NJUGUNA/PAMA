@@ -7,25 +7,25 @@
     android:layout_margin="5dp"
     android:background="@drawable/edit_background">
 
-    <ImageView
-        android:id="@+id/delbtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="24dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/baseline_delete_outline_24" />
+<!--    <ImageView-->
+<!--        android:id="@+id/delbtn"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="16dp"-->
+<!--        android:layout_marginEnd="24dp"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:srcCompat="@drawable/baseline_delete_outline_24" />-->
 
-    <ImageView
-        android:id="@+id/editbtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="10dp"
-        app:layout_constraintBottom_toBottomOf="@+id/delbtn"
-        app:layout_constraintEnd_toStartOf="@+id/delbtn"
-        app:layout_constraintTop_toTopOf="@+id/delbtn"
-        app:srcCompat="@drawable/baseline_edit_24" />
+<!--    <ImageView-->
+<!--        android:id="@+id/editbtn"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginEnd="10dp"-->
+<!--        app:layout_constraintBottom_toBottomOf="@+id/delbtn"-->
+<!--        app:layout_constraintEnd_toStartOf="@+id/delbtn"-->
+<!--        app:layout_constraintTop_toTopOf="@+id/delbtn"-->
+<!--        app:srcCompat="@drawable/baseline_edit_24" />-->
 
 
     <TextView

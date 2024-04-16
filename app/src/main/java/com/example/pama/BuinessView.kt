@@ -2,7 +2,10 @@
 
 
 
-    import android.app.Dialog
+    import TransactionAdapter
+import android.annotation.SuppressLint
+import android.app.Dialog
+import android.database.Cursor
 import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -13,18 +16,29 @@ import android.widget.Button
 import android.widget.DatePicker
 import android.widget.EditText
 import android.widget.RadioButton
+import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.pama.pamaDB.DatabaseHandler
+import com.example.pama.recyclerview.TransactionDataList
 import java.text.SimpleDateFormat
 import java.util.Calendar
 
 
     class BuinessView : Fragment() {
 
+        private lateinit var db:DatabaseHandler
+        private lateinit var newArr: ArrayList<TransactionDataList>
+        private lateinit var recyclerView: RecyclerView
+        private lateinit var adapter: TransactionAdapter
+
+
         //private lateinit var database: DatabaseReference
 
+        @SuppressLint("MissingInflatedId")
         @RequiresApi(Build.VERSION_CODES.O)
         override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
@@ -33,13 +47,42 @@ import java.util.Calendar
             // Inflate the layout for this fragment
            val view =  inflater.inflate(R.layout.fragment_buiness_view, container, false)
 
+            //recycler view handling
+            recyclerView = view.findViewById(R.id.transactions)
+
+            newArr = ArrayList()
+            adapter = TransactionAdapter(newArr)
+
+            db = DatabaseHandler(requireContext())
+
+            recyclerView.layoutManager = LinearLayoutManager(requireContext())
+            recyclerView.adapter = TransactionAdapter(newArr)
+
+            displayTransaction()
+
+
+            //pass data from business  to business view
+            // Get the passed data from the arguments bundle
+            val businessname = arguments?.getString("businessname")
+            val category = arguments?.getString("category")
+            val location = arguments?.getString("location")
+
+            // Display the passed data in the UI
+            view.findViewById<TextView>(R.id.bis_name).text = businessname
+            view.findViewById<TextView>(R.id.cat_name).text = category
+            view.findViewById<TextView>(R.id.loc_name).text = location
+
+
+
             //nested scroll view
             val addbtn = view.findViewById<Button>(R.id.addTransaction)
-    //        val btnback = view.findViewById<Button>(R.id.back_button)
 
-    //        btnback.setOnClickListener {
-    //            findNavController().navigateUp()
-    //        }
+
+//            val btnback = view.findViewById<Button>(R.id.back_btn)
+//
+//            btnback.setOnClickListener {
+//                findNavController().navigateUp()
+//          }
 
             addbtn.setOnClickListener{
 
@@ -52,6 +95,7 @@ import java.util.Calendar
             return view
         }
 
+    @SuppressLint("SimpleDateFormat")
     @RequiresApi(Build.VERSION_CODES.O)
     private fun displayAddTransactionDialog(){
         val dialog = Dialog(requireContext())
@@ -68,8 +112,8 @@ import java.util.Calendar
         val amount: EditText = dialog.findViewById(R.id.trans_amount)
         val income: RadioButton = dialog.findViewById(R.id.type_income)
         val expense: RadioButton = dialog.findViewById(R.id.type_expense)
-        val addbtn: Button = dialog.findViewById(R.id.save_asset)
-        val cancelbtn: Button = dialog.findViewById(R.id.cancel_button)
+        val add_btn: Button = dialog.findViewById(R.id.trans_add)
+        val cancelbtn: Button = dialog.findViewById(R.id.trans_cancel)
 
 
 
@@ -77,14 +121,13 @@ import java.util.Calendar
             dialog.dismiss()
         }
 
-        addbtn.setOnClickListener {
+        add_btn.setOnClickListener {
             val title = transtitle.text.toString()
             val calendar = Calendar.getInstance()
             calendar.timeInMillis = datepicker.minDate
 
             val dateString = "${calendar.get(Calendar.DAY_OF_MONTH)}/${calendar.get(Calendar.MONTH) + 1}/${calendar.get(Calendar.YEAR)}"
             var wallet = ""
-            var amountString = ""
             var type = ""
 
             if (wal_cash.isChecked){
@@ -95,7 +138,7 @@ import java.util.Calendar
                 wallet = "Card"
             }
 
-            amountString = amount.text.toString()
+                val amountString: String = amount.text.toString()
 
             if (income.isChecked){
                 type = "Income"
@@ -108,7 +151,7 @@ import java.util.Calendar
                 return@setOnClickListener
             }
             try {
-                val amount = java.lang.Double.parseDouble(amountString)
+                val amt = java.lang.Double.parseDouble(amountString)
 
                 val dbHandler = DatabaseHandler(requireContext())
 
@@ -116,9 +159,9 @@ import java.util.Calendar
                 var expenseAmount = 0.0
 
                 if (type == "Income") {
-                    incomeAmount = amount
+                    incomeAmount = amt
                 } else {
-                    expenseAmount = amount
+                    expenseAmount = amt
                 }
 
                 val success = dbHandler.insertDataTransactions(title, dateString, wallet, type, incomeAmount, expenseAmount)
@@ -128,13 +171,13 @@ import java.util.Calendar
                         requireContext(),
                         "Transaction added successfully!",
                         Toast.LENGTH_SHORT
-                    ).show();
+                    ).show()
                 } else {
                     Toast.makeText(requireContext(), "Error adding transaction", Toast.LENGTH_SHORT)
-                        .show();
+                        .show()
                 }
             } catch (e: NumberFormatException) {
-                Toast.makeText(requireContext(), "Invalid amount format. Please enter a valid number.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(requireContext(), "Invalid amount format. Please enter a valid number.", Toast.LENGTH_SHORT).show()
             }
 
             dialog.dismiss()
@@ -168,7 +211,41 @@ import java.util.Calendar
            // datepicker.inputType = InputType.TYPE_NULL
         }
 
+        dialog.show()
+
     }
+
+
+        //display transactions in the recycler view
+        @SuppressLint("NotifyDataSetChanged")
+        private fun displayTransaction() {
+            val newcursor: Cursor? = db.getTransactions()
+            newArr.clear()
+            while (newcursor!!.moveToNext()){
+                val spenton = newcursor.getString(1)
+                val date = newcursor.getString(3)
+                val type = newcursor.getString(2)
+                val amount = newcursor.getDouble(
+                    when (type) {
+                        "income" -> 5
+                        else -> 6
+                    }
+                )
+                newArr.add(TransactionDataList(spenton,date,type,amount))
+            }
+            newcursor.close()
+
+            // Set the color of the amount text based on the type of transaction
+//            for (i in 0 until newArr.size) {
+//                if (newArr[i].type == "income") {
+//                    newArr[i].amount.setTextColor(ColorStateList.valueOf(ContextCompat.getColor(requireContext(), R.color.income_color)))
+//                } else {
+//                    newArr[i].amount.setTextColor(ColorStateList.valueOf(ContextCompat.getColor(requireContext(), R.color.expense_color)))
+//                }
+//            }
+            recyclerView.adapter?.notifyDataSetChanged()
+
+        }
 
 
 

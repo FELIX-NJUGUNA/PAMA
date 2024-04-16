@@ -128,7 +128,6 @@
         android:layout_height="50dp"
         android:layout_marginTop="20dp"
         android:background="@drawable/edit_background"
-        android:drawableStart="@drawable/baseline_attach_money_24"
         android:ems="10"
         android:hint="0.00"
         android:textSize="20sp"
@@ -185,7 +184,7 @@
 
 
         <Button
-            android:id="@+id/cancel_button"
+            android:id="@+id/trans_cancel"
             android:layout_width="331dp"
             android:layout_height="68dp"
             android:layout_marginRight="5dp"

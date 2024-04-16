@@ -20,17 +20,31 @@
             android:background="@color/storm">
 
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageButton
+                    android:id="@+id/back_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/back_arrow"
+                    android:background="@color/storm"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"/>
             <TextView
-                android:id="@+id/back_button"
+                android:id="@+id/bis_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="35sp"
                 android:textAlignment="textEnd"
                 android:textColor="@color/cream"
-                android:drawableLeft="@drawable/back_arrow"
                 android:text="Business name" />
+            </LinearLayout>
 
             <TextView
+                android:id="@+id/loc_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="30sp"
@@ -39,6 +53,7 @@
                 android:textAlignment="textEnd"
                 android:text="Location"/>
             <TextView
+                android:id="@+id/cat_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="26sp"
@@ -46,15 +61,17 @@
                 android:layout_marginTop="10dp"
                 android:textAlignment="textEnd"
                 android:text="Category"/>
+
             <Button
                 android:id="@+id/addTransaction"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Add Transaction"
+                android:clickable="true"
                 android:layout_marginTop="20dp"
                 android:backgroundTint="@color/cream"
                 android:textColor="@color/storm"
-                android:drawableStart="@drawable/add_income" />
+                android:focusable="true" />
 
 
         </LinearLayout>
@@ -70,24 +87,14 @@
                 android:textAlignment="center"
                 android:textSize="28sp"
                 android:layout_marginBottom="10dp"
-                android:textColor="@color/storm"
-                />
-            <ScrollView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                tools:ignore="UselessParent">
+                android:textColor="@color/storm"/>
+
 
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/transactions"
                     android:layout_width="match_parent"
-                     android:layout_height="wrap_content"
-                    />
-
-
-
-            </ScrollView>
-
+                    android:layout_height="wrap_content"/>
 
         </LinearLayout>
 
