@@ -24,13 +24,23 @@ class Home : Fragment() {
 
 
 
-    @SuppressLint("SetTextI18n")
+    @SuppressLint("SetTextI18n", "MissingInflatedId")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(layout.fragment_home, container, false)
+
+        db = DatabaseHandler(requireContext())
+        //handle welcome message
+        val username = db.getUsername(requireContext())
+
+        if (username != null) {
+            view.findViewById<TextView>(R.id.username_welcome).text = "Welcome $username"
+        } else {
+            view.findViewById<TextView>(R.id.username_welcome).text = "Username: Not set"
+        }
 
 
 
@@ -41,7 +51,7 @@ class Home : Fragment() {
         newArr = ArrayList()
         adapter = TransactionAdapter(newArr)
 
-        db = DatabaseHandler(requireContext())
+
 
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
         recyclerView.adapter = TransactionAdapter(newArr)

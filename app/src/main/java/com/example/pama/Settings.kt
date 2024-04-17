@@ -27,7 +27,7 @@ class Settings : Fragment() {
         val username = databaseHandler.getUsername(requireContext())
 
         if (username != null) {
-            view.findViewById<TextView>(R.id.settings_username).text = "Hello $username"
+            view.findViewById<TextView>(R.id.settings_username).text = "$username"
         } else {
             view.findViewById<TextView>(R.id.settings_username).text = "Username: Not set"
         }
